@@ -4,12 +4,14 @@ import { Menu, X, Search, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Link from "next/link";
+import { useAuth } from "./auth/AuthContext";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSearchInNav, setShowSearchInNav] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { openAuthModal } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,11 +100,12 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}{" "}
-            <a href="/auth">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6">
-                LogIn / SignUp
-              </Button>
-            </a>
+            <Button
+              onClick={openAuthModal}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6"
+            >
+              LogIn / SignUp
+            </Button>
           </div>
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -162,11 +165,15 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}{" "}
-              <a href="/auth">
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full">
-                  LogIn / SignUp
-                </Button>
-              </a>
+              <Button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.location.href = "/auth";
+                }}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full"
+              >
+                LogIn / SignUp
+              </Button>
             </div>
           </div>
         )}
