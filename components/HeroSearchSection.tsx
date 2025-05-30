@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Sparkles } from "lucide-react";
+import { CheckCircle, Search, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,7 @@ const HeroSearchSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 mb-12 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white border border-gray-200 mb-6 shadow-sm"
           >
             <Sparkles className="w-4 h-4 text-blue-600" />
             <span className="text-sm font-medium text-gray-700">
@@ -68,6 +68,28 @@ const HeroSearchSection = () => {
             offers, valuations, documents, and showings—all in one powerful
             platform.
           </motion.p>
+          {/* Benefits */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto"
+          >
+            {" "}
+            <div className="flex items-center gap-3 justify-center">
+              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+              <span className="font-semibold">Send & Receive Offers</span>
+            </div>{" "}
+            <div className="flex items-center gap-3 justify-center">
+              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+              <span className="font-semibold">AI Property Valuations</span>
+            </div>
+            <div className="flex items-center gap-3 justify-center">
+              <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+              <span className="font-semibold">Document Management</span>
+            </div>
+          </motion.div>
           {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

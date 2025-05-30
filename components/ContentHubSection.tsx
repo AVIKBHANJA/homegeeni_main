@@ -10,6 +10,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const articles = [
   {
@@ -39,6 +41,17 @@ const articles = [
 ];
 
 const ContentHubSection = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Subscribing email:", email);
+    // Subscription functionality would be implemented here
+    // Reset the email input after submission
+    setEmail("");
+    // You could add a toast notification here
+  };
+
   return (
     <section className="py-32 bg-gray-50">
       <div className="container px-4">
@@ -140,21 +153,32 @@ const ContentHubSection = () => {
               <div className="text-gray-500 font-light">Accuracy Rate</div>
             </div>
           </div>
-
           <h3 className="text-3xl font-light mb-4 text-gray-900">
             Never Miss Important Market Updates
           </h3>
           <p className="text-gray-500 mb-8 max-w-2xl mx-auto font-light leading-relaxed">
             Subscribe to our AI-powered content hub and get personalized
             insights delivered to your inbox.
-          </p>
-
-          <Button
-            size="lg"
-            className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-6 text-lg rounded-xl transition-all duration-200"
-          >
-            Explore All Content
-          </Button>
+          </p>{" "}
+          <form onSubmit={handleSubscribe} className="max-w-xl mx-auto">
+            <div className="flex items-center bg-gray-50 rounded-full border border-gray-200 hover:shadow-md transition-all duration-300">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 border-0 py-3 px-6 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm rounded-l-full"
+              />
+              <Button
+                type="submit"
+                size="sm"
+                className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6"
+              >
+                Subscribe
+              </Button>
+            </div>
+          </form>
         </motion.div>
       </div>
     </section>

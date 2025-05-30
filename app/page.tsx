@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import AIAssistantSection from "@/components/AIAssistantSection";
 import ContentHubSection from "@/components/ContentHubSection";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -19,7 +18,7 @@ export default function Home() {
         <ContentHubSection />
         <HomeCarousel />
         <TestimonialsSection />
-        <CTASection />
+        
        
         <Footer />
       </div>
