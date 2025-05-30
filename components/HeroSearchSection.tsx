@@ -33,17 +33,17 @@ const HeroSearchSection = () => {
           className="text-center max-w-5xl mx-auto"
         >
           {/* AI Badge */}{" "}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 mb-12 shadow-sm"
-            >
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-gray-700">
-                AI-Powered Real Estate Platform
-              </span>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 mb-12 shadow-sm"
+          >
+            <Sparkles className="w-4 h-4 text-blue-600" />
+            <span className="text-sm font-medium text-gray-700">
+              AI-Powered Real Estate Platform
+            </span>
+          </motion.div>
           {/* Main Headline */}{" "}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -77,23 +77,23 @@ const HeroSearchSection = () => {
             id="hero-search-section"
           >
             <form onSubmit={handleSearch} className="relative">
-              <div className="flex items-center bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center pl-8 pr-4">
-                  <Sparkles className="w-5 h-5 text-blue-500" />
-                </div>{" "}
+              <div className="flex items-center bg-gray-50 rounded-full shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <div className="flex items-center pl-6 pr-2">
+                  <Sparkles className="w-4 h-4 text-orange-400" />
+                </div>
                 <Input
                   type="text"
-                  placeholder="Search properties, send offers, or manage documents"
+                  placeholder="Describe the home you'd love to live in"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 border-0 text-lg py-8 px-0 focus-visible:ring-0 placeholder:text-gray-400 bg-transparent"
+                  className="flex-1 border-0 py-3 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm"
                 />
                 <Button
                   type="submit"
-                  size="lg"
-                  className="m-3 bg-gray-900 hover:bg-gray-800 text-white rounded-xl px-8 py-6 transition-all duration-200"
+                  size="sm"
+                  className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4"
                 >
-                  <Search className="w-5 h-5" />
+                  <Search className="w-4 h-4" />
                 </Button>
               </div>
             </form>
