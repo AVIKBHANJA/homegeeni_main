@@ -8,12 +8,24 @@ import { Button } from "@/components/ui/button";
 
 const HeroSearchSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
     // Search functionality would be implemented here
   };
+
+  // Function to handle suggestion clicks
+  const handleSuggestionClick = (suggestion: string) => {
+    setSearchQuery(suggestion);
+    // Optional: Auto-focus the input after selecting a suggestion
+    const searchInput = document.querySelector(
+      "#hero-search-input"
+    ) as HTMLInputElement;
+    if (searchInput) {
+      searchInput.focus();
+    }
+  };
+
   const suggestions = [
     "2 beds 2 bath condo under $500K near downtown",
     "Send offer for 123 Main Street property",
@@ -102,8 +114,9 @@ const HeroSearchSection = () => {
               <div className="flex items-center bg-gray-50 rounded-full shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center pl-6 pr-2">
                   <Sparkles className="w-4 h-4 text-orange-400" />
-                </div>
+                </div>{" "}
                 <Input
+                  id="hero-search-input"
                   type="text"
                   placeholder="Describe the home you'd love to live in"
                   value={searchQuery}
@@ -127,11 +140,13 @@ const HeroSearchSection = () => {
             transition={{ delay: 0.8 }}
             className="relative overflow-hidden"
           >
+            {" "}
             <div className="flex space-x-4 animate-scroll">
               {[...suggestions, ...suggestions].map((suggestion, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.02 }}
+                  onClick={() => handleSuggestionClick(suggestion)}
                   className="flex-shrink-0 bg-gray-50 border border-gray-100 rounded-xl px-6 py-4 text-gray-600 cursor-pointer hover:bg-gray-100 transition-all duration-200"
                 >
                   <span className="text-sm whitespace-nowrap">
