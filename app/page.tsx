@@ -1,11 +1,11 @@
 import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
 import AIAssistantSection from "@/components/AIAssistantSection";
 import ContentHubSection from "@/components/ContentHubSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import HomeCarousel from "@/components/HomeCarousel";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import HeroSearchSection from "@/components/HeroSearchSection";
 
 
 export default function Home() {
@@ -13,7 +13,8 @@ export default function Home() {
     <>
       <Navigation />
       <div className="px-4 lg:px-8">
-        <HeroSection />
+  
+        <HeroSearchSection />
         <AIAssistantSection />
         <ContentHubSection />
         <HomeCarousel />

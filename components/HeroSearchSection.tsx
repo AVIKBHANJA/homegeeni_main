@@ -32,6 +32,18 @@ const HeroSearchSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-5xl mx-auto"
         >
+          {/* AI Badge */}{" "}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 mb-12 shadow-sm"
+            >
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-gray-700">
+                AI-Powered Real Estate Platform
+              </span>
+            </motion.div>
           {/* Main Headline */}{" "}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
