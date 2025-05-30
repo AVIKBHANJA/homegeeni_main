@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 type User = {
@@ -31,7 +31,8 @@ export function useAuth() {
   return context;
 }
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+// Component that uses useSearchParams - needs to be wrapped in Suspense
+function AuthProviderWithSearchParams({ children }: { children: React.ReactNode }) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -136,11 +137,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user,
         isAuthenticated,
         login,
-        signup,
-        logout,
+        signup,      logout,
       }}
     >
       {children}
     </AuthContext.Provider>
+  );
+}
+
+// Main AuthProvider that wraps the search params component in Suspense
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthProviderWithSearchParams>{children}</AuthProviderWithSearchParams>
+    </Suspense>
   );
 }
