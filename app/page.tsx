@@ -12,7 +12,6 @@ export default function Home() {
     <>
       <Navigation />
       <div className="px-4 lg:px-8">
-  
         <HeroSearchSection />
         <AIAssistantSection />
         <ContentHubSection />

@@ -27,8 +27,7 @@ const Navigation = () => {
 
   const navItems = [
 
-    { name: "AI Assistant", href: "#ai-assistant" },
-    { name: "Content Hub", href: "#content" },
+    { name: "Blogs", href: "/blogs" },
 
   ];
 
@@ -94,7 +93,7 @@ const Navigation = () => {
               </a>
             ))}
             <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6">
-              Get Started
+              LogIn / SignUp
             </Button>
           </div>
           {/* Mobile Menu Button */}

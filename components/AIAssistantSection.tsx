@@ -1,10 +1,23 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Bot, MessageCircle, Lightbulb, Target } from "lucide-react";
+import { Bot, MessageCircle, Lightbulb, Target, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const AIAssistantSection = () => {
+  const [userInput, setUserInput] = useState("");
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (userInput.trim()) {
+      // This will be used when AI is ready to be implemented
+      console.log("User input:", userInput);
+      // Clear the input field after submitting
+      setUserInput("");
+    }
+  };
   return (
     <section className="py-24 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="container px-4">
@@ -80,13 +93,25 @@ const AIAssistantSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-full"
-            >
-              Try AI Assistant
-            </Button>
+            </div>{" "}
+            <form onSubmit={handleSubmit} className="flex items-center gap-2">
+              <div className="relative flex-grow">
+                <Input
+                  type="text"
+                  placeholder="Try AI Assistant"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  className="bg-white border-2 border-gray-200 rounded-full px-5 py-6 text-lg pr-12"
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-10 w-10 rounded-full"
+                >
+                  <Send className="h-5 w-5 text-white" />
+                </Button>
+              </div>
+            </form>
           </motion.div>
 
           {/* Right Content - AI Chat Interface Mockup */}
