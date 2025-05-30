@@ -25,7 +25,7 @@ const HeroSearchSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white">
-      <div className="container px-4 py-32 relative z-10">
+      <div className="container px-4 py-24 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
