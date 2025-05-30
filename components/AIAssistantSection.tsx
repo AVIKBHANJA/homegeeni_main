@@ -48,9 +48,23 @@ const AIAssistantSection = () => {
               with intelligent automation.
             </p>
             <div className="space-y-6 mb-8">
+              {" "}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <motion.div
+                    animate={{
+                      rotate: [0, 15, -15, 0],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </motion.div>
                 </div>
                 <div>
                   {" "}
@@ -62,11 +76,27 @@ const AIAssistantSection = () => {
                     streamlines the entire transaction process.
                   </p>
                 </div>
-              </div>
-
+              </div>{" "}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                  <Lightbulb className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <motion.div
+                    animate={{
+                      y: [0, -5, 0],
+                      opacity: [1, 0.85, 1],
+                      filter: [
+                        "brightness(1)",
+                        "brightness(1.5)",
+                        "brightness(1)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                  >
+                    <Lightbulb className="w-6 h-6 text-white" />
+                  </motion.div>
                 </div>
                 <div>
                   {" "}
@@ -76,11 +106,29 @@ const AIAssistantSection = () => {
                     that analyzes market data in real-time.
                   </p>
                 </div>
-              </div>
-
+              </div>{" "}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <motion.div
+                    animate={{
+                      rotate: [0, 360],
+                      scale: [1, 1.15, 1],
+                    }}
+                    transition={{
+                      rotate: {
+                        duration: 8,
+                        ease: "linear",
+                        repeat: Infinity,
+                      },
+                      scale: {
+                        duration: 3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      },
+                    }}
+                  >
+                    <Target className="w-6 h-6 text-white" />
+                  </motion.div>
                 </div>
                 <div>
                   {" "}

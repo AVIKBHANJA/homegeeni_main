@@ -227,17 +227,22 @@ const Footer = () => {
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   +1 (555) 123-4567
                 </span>
-              </a>
-              <div className="group flex items-start gap-3 text-gray-300 p-3 bg-white/5 rounded-lg">
+              </a>{" "}
+              <a
+                href="https://maps.google.com/?q=San+Francisco,+CA,+USA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-3 text-gray-300 hover:text-white transition-colors p-3 bg-white/5 hover:bg-white/10 rounded-lg"
+              >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-4 h-4 text-white" />
                 </div>
-                <span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">
                   San Francisco, CA
                   <br />
                   United States
                 </span>
-              </div>
+              </a>
             </div>
           </div>
         </div>{" "}

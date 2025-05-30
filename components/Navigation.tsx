@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Search, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import Link from "next/link";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,11 +25,9 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const navItems = [
-
     { name: "Blogs", href: "/blogs" },
-
+    { name: "FAQ", href: "/faq" },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -51,9 +50,16 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between h-16">
-          {/* Logo */}{" "}
+          {" "}
+          {/* Logo */}
           <div className="flex items-center">
-            <img src="/logo.png" alt="HomeGeeni" className="h-10 w-auto" />
+            <Link href="/" aria-label="Go to homepage">
+              <img
+                src="/logo.png"
+                alt="HomeGeeni"
+                className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
+              />
+            </Link>
           </div>
           {/* Search Bar - Shows when scrolled past hero search */}
           {showSearchInNav && (
@@ -91,10 +97,12 @@ const Navigation = () => {
               >
                 {item.name}
               </a>
-            ))}
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6">
-              LogIn / SignUp
-            </Button>
+            ))}{" "}
+            <a href="/auth">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6">
+                LogIn / SignUp
+              </Button>
+            </a>
           </div>
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -153,10 +161,12 @@ const Navigation = () => {
                 >
                   {item.name}
                 </a>
-              ))}
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full">
-                Get Started
-              </Button>
+              ))}{" "}
+              <a href="/auth">
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full">
+                  LogIn / SignUp
+                </Button>
+              </a>
             </div>
           </div>
         )}

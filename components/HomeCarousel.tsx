@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, Search } from "lucide-react";
+import { Button } from "./ui/button";
 
 // Create dummy home listing data
 const homes = [
@@ -130,32 +131,42 @@ const HomeCarousel = () => {
         </h2>
         <p className="text-lg text-gray-500 text-center max-w-2xl mx-auto">
           The future is here. Buy your next home with HomeGeeni
-        </p>
-
+        </p>{" "}
         <div className="relative mt-10 max-w-3xl mx-auto">
-          <div className="flex items-center bg-white rounded-full border border-gray-200 shadow-md">
+          <motion.div
+            className="flex items-center bg-white rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="flex items-center pl-5 pr-2 text-blue-500">
+              <motion.span
+                animate={{
+                  rotate: [0, 5, -5, 0],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+              >
+                ✨
+              </motion.span>
+            </div>{" "}
             <input
               type="text"
-              placeholder="✨ Describe the home you'd love to live in"
-              className="flex-1 px-6 py-4 rounded-full bg-transparent focus:outline-none"
+              placeholder="Describe the home you'd love to live in"
+              className="flex-1 px-4 py-4 rounded-full bg-transparent focus:outline-none text-gray-800"
             />
-            <button className="bg-blue-500 text-white p-3 rounded-full mr-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polygon points="10 8 16 12 10 16 10 8" />
-              </svg>
-            </button>
-          </div>
+            <Button
+              type="submit"
+              className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-5 h-12"
+            >
+              <Search className="w-5 h-5" />
+            </Button>
+          </motion.div>
         </div>
       </div>
       <div className="w-full overflow-hidden relative">
