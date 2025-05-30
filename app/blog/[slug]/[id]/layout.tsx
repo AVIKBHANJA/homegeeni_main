@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { getBlogPost } from "@/lib/blogData";
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
