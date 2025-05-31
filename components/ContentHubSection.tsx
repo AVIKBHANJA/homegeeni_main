@@ -8,35 +8,46 @@ import {
   Home,
   Clock,
   ArrowRight,
+  Cpu,
+  Target,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import Link from "next/link";
 
 const articles = [
   {
-    category: "Market Trends",
-    title: "Housing Market 2025: AI-Powered Forecast and Analysis",
+    id: "123001",
+    category: "Technology",
+    title:
+      "AI-Powered Property Valuations: The Future of Real Estate Assessment",
+    slug: "ai-powered-property-valuations-the-future-of-real-estate-assessment",
     excerpt:
-      "GeeniAI analyzes market data to reveal upcoming trends in property values, interest rates, and buyer behavior.",
-    readTime: "5 min read",
-    icon: TrendingUp,
+      "Discover how artificial intelligence is revolutionizing property valuations with unprecedented accuracy and speed, helping buyers and sellers make informed decisions.",
+    readTime: "8 min read",
+    icon: Cpu,
   },
   {
+    id: "123003",
     category: "Investment",
-    title: "Real Estate Investing: AI Tools for Maximum ROI",
+    title:
+      "Real Estate Investment Strategies: Building Wealth Through Property",
+    slug: "real-estate-investment-strategies-building-wealth-through-property",
     excerpt:
-      "Discover how HomeGeeni helps investors identify properties with the highest potential returns through automated valuations.",
-    readTime: "7 min read",
+      "Explore proven real estate investment strategies that can help you build long-term wealth and generate passive income in today's market.",
+    readTime: "15 min read",
     icon: DollarSign,
   },
   {
-    category: "Home Buying",
-    title: "Send Offers and Manage Showings with HomeGeeni",
+    id: "123004",
+    category: "Technology",
+    title: "Smart Home Technology: Boosting Property Value in the Digital Age",
+    slug: "smart-home-technology-boosting-property-value-in-the-digital-age",
     excerpt:
-      "Learn how HomeGeeni's platform streamlines the home buying process from search to closing with automated tools.",
-    readTime: "6 min read",
-    icon: Home,
+      "Discover which smart home technologies provide the best return on investment and how they're transforming modern real estate markets.",
+    readTime: "11 min read",
+    icon: Target,
   },
 ];
 
@@ -90,6 +101,7 @@ const ContentHubSection = () => {
 
         {/* Featured Articles */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 max-w-7xl mx-auto">
+          {" "}
           {articles.map((article, index) => (
             <motion.article
               key={article.title}
@@ -99,32 +111,34 @@ const ContentHubSection = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-gray-100">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
-                    <article.icon className="w-5 h-5 text-gray-700" />
+              <Link href={`/blog/${article.slug}/${article.id}`}>
+                <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
+                      <article.icon className="w-5 h-5 text-gray-700" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-500">
+                      {article.category}
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-gray-500">
-                    {article.category}
-                  </span>
-                </div>
 
-                <h3 className="text-xl font-medium mb-4 text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
-                  {article.title}
-                </h3>
+                  <h3 className="text-xl font-medium mb-4 text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
+                    {article.title}
+                  </h3>
 
-                <p className="text-gray-500 mb-6 leading-relaxed font-light">
-                  {article.excerpt}
-                </p>
+                  <p className="text-gray-500 mb-6 leading-relaxed font-light">
+                    {article.excerpt}
+                  </p>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <Clock className="w-4 h-4" />
-                    {article.readTime}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Clock className="w-4 h-4" />
+                      {article.readTime}
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                 </div>
-              </div>
+              </Link>
             </motion.article>
           ))}
         </div>
