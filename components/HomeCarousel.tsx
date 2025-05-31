@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
+import AnimatedSearchIcon from "./ui/animated-search-icon";
 
 // Create dummy home listing data
 const homes = [
@@ -157,20 +158,9 @@ const HomeCarousel = () => {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
           >
+            {" "}
             <div className="flex items-center pl-5 pr-2 text-blue-500">
-              <motion.span
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              >
-                ✨
-              </motion.span>
+              <AnimatedSearchIcon size={24} />
             </div>{" "}
             <input
               type="text"

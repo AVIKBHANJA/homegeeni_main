@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X, Search, Sparkles } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
+import AnimatedSearchIcon from "./ui/animated-search-icon";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Link from "next/link";
@@ -86,7 +87,7 @@ const Navigation = () => {
               <form onSubmit={handleSearch} className="relative w-full">
                 <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
                   <div className="flex items-center pl-4 pr-2">
-                    <Sparkles className="w-4 h-4 text-orange-400" />
+                    <AnimatedSearchIcon size={18} />
                   </div>{" "}
                   <Input
                     type="text"
@@ -152,7 +153,7 @@ const Navigation = () => {
                 <form onSubmit={handleSearch} className="relative">
                   <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
                     <div className="flex items-center pl-4 pr-2">
-                      <Sparkles className="w-4 h-4 text-orange-400" />
+                      <AnimatedSearchIcon size={18} />
                     </div>{" "}
                     <Input
                       type="text"

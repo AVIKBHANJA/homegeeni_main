@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Search, Sparkles } from "lucide-react";
+import { CheckCircle, Search } from "lucide-react";
+import AnimatedSearchIcon from "@/components/ui/animated-search-icon";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -67,7 +68,7 @@ const HeroSearchSection = () => {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white border border-gray-200 mb-6 shadow-sm"
           >
-            <Sparkles className="w-4 h-4 text-blue-600" />
+            <AnimatedSearchIcon size={18} />
             <span className="text-sm font-medium text-gray-700">
               AI-Powered Real Estate Platform
             </span>
@@ -127,9 +128,11 @@ const HeroSearchSection = () => {
             id="hero-search-section"
           >
             <form onSubmit={handleSearch} className="relative">
+              {" "}
               <div className="flex items-center bg-gray-50 rounded-full shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300">
+                {" "}
                 <div className="flex items-center pl-6 pr-2">
-                  <Sparkles className="w-4 h-4 text-orange-400" />
+                  <AnimatedSearchIcon size={18} />
                 </div>{" "}
                 <Input
                   id="hero-search-input"
