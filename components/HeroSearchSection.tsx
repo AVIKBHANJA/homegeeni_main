@@ -3,28 +3,25 @@
 import { motion } from "framer-motion";
 import { CheckCircle, Search } from "lucide-react";
 import AnimatedSearchIcon from "@/components/ui/animated-search-icon";
-import { useState, useEffect } from "react";
+import AnimatedTypingPlaceholder from "@/components/ui/animated-typing-placeholder";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const HeroSearchSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const placeholderTexts = [
-    "Describe the home you want to search",
-    "Ask GeeniAI about a specific home",
+    "Describe the home you want to search...",
+    "Ask GeeniAI about a specific home...",
     "Hey there, I'm GeeniAI. How can I help you today?",
     "What's on your mind, today?",
+    "Find 3 bed 2 bath under $500K...",
+    "Schedule a property showing...",
+    "Get instant property valuation...",
+    "Send an offer on 123 Main Street...",
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
-    }, 3000); // Change every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [placeholderTexts.length]);
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
@@ -80,7 +77,6 @@ const HeroSearchSection = () => {
             transition={{ delay: 0.2 }}
             className="text-4xl md:text-8xl font-light mb-8 leading-[0.9] text-gray-900 tracking-tight"
           >
-           
             <span className="font-medium bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               AI For Agents, Buyers & Sellers
             </span>
@@ -136,11 +132,30 @@ const HeroSearchSection = () => {
                 <Input
                   id="hero-search-input"
                   type="text"
-                  placeholder={placeholderTexts[currentPlaceholder]}
+                  placeholder={
+                    isSearchFocused
+                      ? "Type your home search query or ask GeeniAI anything..."
+                      : ""
+                  }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 border-0 py-3 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm"
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                  className="flex-1 border-0 py-3 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm caret-gray-500"
                 />
+                {!searchQuery && !isSearchFocused && (
+                  <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+                    <AnimatedTypingPlaceholder
+                      texts={placeholderTexts}
+                      typingSpeed={50}
+                      deletingSpeed={25}
+                      pauseDuration={1200}
+                      className="text-gray-500 text-sm"
+                      cursorColor="text-gray-500"
+                      isActive={isSearchFocused}
+                    />
+                  </div>
+                )}
                 <Button
                   type="submit"
                   size="sm"

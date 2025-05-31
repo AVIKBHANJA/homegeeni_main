@@ -5,9 +5,22 @@ import { motion } from "framer-motion";
 import { Bot, MessageCircle, Lightbulb, Target, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import AnimatedTypingPlaceholder from "@/components/ui/animated-typing-placeholder";
 
 const AIAssistantSection = () => {
   const [userInput, setUserInput] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const placeholderTexts = [
+    "Try AI Assistant...",
+    "Ask me anything about real estate...",
+    "Find homes in your area...",
+    "Get property valuations...",
+    "Schedule property showings...",
+    "Help with documents and offers...",
+    "Investment property advice...",
+    "Market trends and analysis...",
+  ];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -143,14 +156,35 @@ const AIAssistantSection = () => {
               </div>
             </div>{" "}
             <form onSubmit={handleSubmit} className="flex items-center gap-2">
+              {" "}
               <div className="relative flex-grow">
+                {" "}
                 <Input
                   type="text"
-                  placeholder="Try AI Assistant"
+                  placeholder={
+                    isInputFocused
+                      ? "Ask GeeniAI anything about real estate..."
+                      : ""
+                  }
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
-                  className="bg-white border-2 border-gray-200 rounded-full px-5 py-6 text-lg pr-12"
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                  className="bg-white border-2 border-gray-200 rounded-full px-5 py-6 text-lg pr-12 caret-gray-500"
                 />
+                {!userInput && !isInputFocused && (
+                  <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                    <AnimatedTypingPlaceholder
+                      texts={placeholderTexts}
+                      typingSpeed={60}
+                      deletingSpeed={30}
+                      pauseDuration={1000}
+                      className="text-gray-500 text-lg"
+                      cursorColor="text-gray-500"
+                      isActive={isInputFocused}
+                    />
+                  </div>
+                )}
                 <Button
                   type="submit"
                   size="icon"

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Search } from "lucide-react";
 import AnimatedSearchIcon from "./ui/animated-search-icon";
+import AnimatedTypingPlaceholder from "./ui/animated-typing-placeholder";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Link from "next/link";
@@ -12,14 +13,19 @@ const Navigation = () => {
   const [showSearchInNav, setShowSearchInNav] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const { openAuthModal } = useAuth();
   const placeholderTexts = [
-    "Describe the home you want to search",
-    "Ask GeeniAI about a specific home",
-    "Hey there, I'm GeeniAI. How can I help you today?",
-    "What's on your mind, today?",
+    "Find your dream home with AI...",
+    "3 bed 2 bath under $500K...",
+    "Search homes near downtown...",
+    "Investment properties with ROI...",
+    "Luxury condos with city views...",
+    "Houses with large backyards...",
+    "New construction homes...",
+    "Ask GeeniAI anything...",
+    "Schedule a property showing...",
+    "Get instant property valuation...",
   ];
 
   const suggestedSearches = [
@@ -31,13 +37,6 @@ const Navigation = () => {
     "New construction homes",
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
-    }, 3000); // Change every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [placeholderTexts.length]);
   useEffect(() => {
     const handleScroll = () => {
       const heroSearchSection = document.getElementById("hero-search-section");
@@ -138,12 +137,29 @@ const Navigation = () => {
                   </div>{" "}
                   <Input
                     type="text"
-                    placeholder={placeholderTexts[currentPlaceholder]}
+                    placeholder={
+                      isSearchFocused
+                        ? "Search for homes, neighborhoods, or ask AI..."
+                        : ""
+                    }
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}
-                    className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm"
+                    className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm caret-gray-500"
                   />
+                  {!searchQuery && !isSearchFocused && (
+                    <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+                      <AnimatedTypingPlaceholder
+                        texts={placeholderTexts}
+                        typingSpeed={60}
+                        deletingSpeed={30}
+                        pauseDuration={800}
+                        className="text-gray-500 text-sm"
+                        cursorColor="text-gray-500"
+                        isActive={isSearchFocused}
+                      />
+                    </div>
+                  )}
                   <Button
                     type="submit"
                     size="sm"
@@ -228,11 +244,24 @@ const Navigation = () => {
                     </div>{" "}
                     <Input
                       type="text"
-                      placeholder={placeholderTexts[currentPlaceholder]}
+                      placeholder="Search for homes, neighborhoods, or ask AI..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm"
+                      className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm caret-gray-500"
                     />
+                    {!searchQuery && (
+                      <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+                        <AnimatedTypingPlaceholder
+                          texts={placeholderTexts}
+                          typingSpeed={60}
+                          deletingSpeed={30}
+                          pauseDuration={800}
+                          className="text-gray-500 text-sm"
+                          cursorColor="text-gray-500"
+                          isActive={false}
+                        />
+                      </div>
+                    )}
                     <Button
                       type="submit"
                       size="sm"

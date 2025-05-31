@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AnimatedSearchIcon from "./ui/animated-search-icon";
+import AnimatedTypingPlaceholder from "./ui/animated-typing-placeholder";
 
 // Create dummy home listing data
 const homes = [
@@ -124,22 +125,19 @@ const homes = [
 const extendedHomes = [...homes, ...homes];
 
 const HomeCarousel = () => {
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const placeholderTexts = [
-    "Describe the home you want to search",
-    "Ask GeeniAI about a specific home",
+    "Describe the home you want to search...",
+    "Ask GeeniAI about a specific home...",
     "Hey there, I'm GeeniAI. How can I help you today?",
     "What's on your mind, today?",
+    "Find luxury homes with city views...",
+    "Search for investment properties...",
+    "New construction homes near me...",
+    "Houses with large backyards...",
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
-    }, 3000); // Change every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [placeholderTexts.length]);
   return (
     <section className="py-10 mt-12 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white"></div>
@@ -164,9 +162,28 @@ const HomeCarousel = () => {
             </div>{" "}
             <input
               type="text"
-              placeholder={placeholderTexts[currentPlaceholder]}
-              className="flex-1 px-4 py-4 rounded-full bg-transparent focus:outline-none text-gray-800"
+              placeholder={
+                isSearchFocused ? "Search for your dream home..." : ""
+              }
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              className="flex-1 px-4 py-4 rounded-full bg-transparent focus:outline-none text-gray-800 caret-gray-500"
             />
+            {!searchQuery && !isSearchFocused && (
+              <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+                <AnimatedTypingPlaceholder
+                  texts={placeholderTexts}
+                  typingSpeed={50}
+                  deletingSpeed={25}
+                  pauseDuration={1000}
+                  className="text-gray-500 text-base"
+                  cursorColor="text-gray-500"
+                  isActive={isSearchFocused}
+                />
+              </div>
+            )}
             <Button
               type="submit"
               className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-5 h-12"
