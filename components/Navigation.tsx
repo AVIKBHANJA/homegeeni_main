@@ -13,13 +13,22 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const { openAuthModal } = useAuth();
-
   const placeholderTexts = [
     "Describe the home you want to search",
     "Ask GeeniAI about a specific home",
     "Hey there, I'm GeeniAI. How can I help you today?",
     "What's on your mind, today?",
+  ];
+
+  const suggestedSearches = [
+    "3 bed 2 bath under $500K",
+    "Homes near downtown Seattle",
+    "Investment properties with good ROI",
+    "Condos with city view",
+    "Houses with large backyards",
+    "New construction homes",
   ];
 
   useEffect(() => {
@@ -29,7 +38,6 @@ const Navigation = () => {
 
     return () => clearInterval(interval);
   }, [placeholderTexts.length]);
-
   useEffect(() => {
     const handleScroll = () => {
       const heroSearchSection = document.getElementById("hero-search-section");
@@ -44,14 +52,48 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const searchContainer = document.getElementById(
+        "navbar-search-container"
+      );
+      if (searchContainer && !searchContainer.contains(event.target as Node)) {
+        setIsSearchFocused(false);
+      }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsSearchFocused(false);
+      }
+    };
+
+    if (isSearchFocused) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [isSearchFocused]);
   const navItems = [
     { name: "Blogs", href: "/blogs" },
     { name: "FAQ", href: "/faq" },
   ];
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Searching for homes:", searchQuery);
+    // Search functionality would be implemented here
+    setIsSearchFocused(false);
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setSearchQuery(suggestion);
+    setIsSearchFocused(false);
+    console.log("Searching for homes:", suggestion);
     // Search functionality would be implemented here
   };
 
@@ -80,9 +122,14 @@ const Navigation = () => {
               />
             </Link>
           </div>{" "}
-          {/* Search Bar - Shows when scrolled past hero search */}
+          {/* Search Bar - Shows when scrolled past hero search */}{" "}
           {showSearchInNav && (
-            <div className="hidden lg:flex items-center flex-1 max-w-md mx-8">
+            <div
+              id="navbar-search-container"
+              className={`hidden lg:flex items-center flex-1 transition-all duration-300 ${
+                isSearchFocused ? "max-w-2xl" : "max-w-md"
+              } mx-8 relative`}
+            >
               {" "}
               <form onSubmit={handleSearch} className="relative w-full">
                 <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
@@ -94,6 +141,7 @@ const Navigation = () => {
                     placeholder={placeholderTexts[currentPlaceholder]}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
                     className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm"
                   />
                   <Button
@@ -104,6 +152,29 @@ const Navigation = () => {
                     <Search className="w-4 h-4" />
                   </Button>
                 </div>
+
+                {/* Search Suggestions Dropdown */}
+                {isSearchFocused && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                    <div className="p-4">
+                      <p className="text-sm font-medium text-gray-500 mb-3">
+                        Suggested Searches
+                      </p>
+                      <div className="space-y-1">
+                        {suggestedSearches.map((suggestion, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleSuggestionClick(suggestion)}
+                            className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-150 flex items-center gap-2"
+                          >
+                            <Search className="w-4 h-4 text-gray-400" />
+                            {suggestion}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </form>
             </div>
           )}
