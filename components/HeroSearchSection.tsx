@@ -78,12 +78,11 @@ const HeroSearchSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-6xl md:text-8xl font-light mb-8 leading-[0.9] text-gray-900 tracking-tight"
+            className="text-4xl md:text-8xl font-light mb-8 leading-[0.9] text-gray-900 tracking-tight"
           >
-            One Platform.
-            <br />
+           
             <span className="font-medium bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              All Real Estate Needs.
+              AI For Agents, Buyers & Sellers
             </span>
           </motion.h1>
           {/* Subtitle */}
