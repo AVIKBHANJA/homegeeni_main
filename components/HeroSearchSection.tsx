@@ -2,12 +2,28 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle, Search, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const HeroSearchSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+
+  const placeholderTexts = [
+    "Describe the home you want to search",
+    "Ask GeeniAI about a specific home",
+    "Hey there, I'm GeeniAI. How can I help you today?",
+    "What's on your mind, today?",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [placeholderTexts.length]);
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
@@ -118,7 +134,7 @@ const HeroSearchSection = () => {
                 <Input
                   id="hero-search-input"
                   type="text"
-                  placeholder="Describe the home you'd love to live in"
+                  placeholder={placeholderTexts[currentPlaceholder]}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 border-0 py-3 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm"

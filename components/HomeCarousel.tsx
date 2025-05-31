@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Heart, Search } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState, useEffect } from "react";
 
 // Create dummy home listing data
 const homes = [
@@ -122,6 +123,22 @@ const homes = [
 const extendedHomes = [...homes, ...homes];
 
 const HomeCarousel = () => {
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+
+  const placeholderTexts = [
+    "Describe the home you want to search",
+    "Ask GeeniAI about a specific home",
+    "Hey there, I'm GeeniAI. How can I help you today?",
+    "What's on your mind, today?",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [placeholderTexts.length]);
   return (
     <section className="py-10 mt-12 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white"></div>
@@ -157,7 +174,7 @@ const HomeCarousel = () => {
             </div>{" "}
             <input
               type="text"
-              placeholder="Describe the home you'd love to live in"
+              placeholder={placeholderTexts[currentPlaceholder]}
               className="flex-1 px-4 py-4 rounded-full bg-transparent focus:outline-none text-gray-800"
             />
             <Button

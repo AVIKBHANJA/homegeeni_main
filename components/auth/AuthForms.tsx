@@ -69,10 +69,10 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
               <p className="text-gray-500 text-sm">
                 Log in to access your HomeGeeni account
               </p>
-            </div>
+            </div>{" "}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="email"
                   placeholder="Email Address"
@@ -81,7 +81,7 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
                 />
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type={showLoginPassword ? "text" : "password"}
                   placeholder="Password"
@@ -91,7 +91,7 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
                 <button
                   type="button"
                   onClick={() => setShowLoginPassword(!showLoginPassword)}
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   {showLoginPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -242,10 +242,10 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
               <p className="text-gray-500 text-sm">
                 Join HomeGeeni to find your perfect home
               </p>
-            </div>
+            </div>{" "}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Full Name"
@@ -255,7 +255,7 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
               </div>
 
               <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="email"
                   placeholder="Email Address"
@@ -264,7 +264,7 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
                 />
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type={showSignupPassword ? "text" : "password"}
                   placeholder="Password"
@@ -274,7 +274,7 @@ export default function AuthForms({ inModal = false }: AuthFormsProps) {
                 <button
                   type="button"
                   onClick={() => setShowSignupPassword(!showSignupPassword)}
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   {showSignupPassword ? (
                     <EyeOff className="h-4 w-4" />

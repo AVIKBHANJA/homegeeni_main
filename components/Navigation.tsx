@@ -11,7 +11,23 @@ const Navigation = () => {
   const [showSearchInNav, setShowSearchInNav] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const { openAuthModal } = useAuth();
+
+  const placeholderTexts = [
+    "Describe the home you want to search",
+    "Ask GeeniAI about a specific home",
+    "Hey there, I'm GeeniAI. How can I help you today?",
+    "What's on your mind, today?",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPlaceholder((prev) => (prev + 1) % placeholderTexts.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [placeholderTexts.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,21 +78,22 @@ const Navigation = () => {
                 className="h-10 w-auto cursor-pointer hover:opacity-90 transition-opacity"
               />
             </Link>
-          </div>
+          </div>{" "}
           {/* Search Bar - Shows when scrolled past hero search */}
           {showSearchInNav && (
             <div className="hidden lg:flex items-center flex-1 max-w-md mx-8">
+              {" "}
               <form onSubmit={handleSearch} className="relative w-full">
-                <div className="flex items-center bg-gray-50 rounded-full border border-gray-200">
+                <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
                   <div className="flex items-center pl-4 pr-2">
                     <Sparkles className="w-4 h-4 text-orange-400" />
-                  </div>
+                  </div>{" "}
                   <Input
                     type="text"
-                    placeholder="Describe the home you'd love to live in"
+                    placeholder={placeholderTexts[currentPlaceholder]}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm"
+                    className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm"
                   />
                   <Button
                     type="submit"
@@ -127,20 +144,22 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4 border-t border-gray-100 mt-4 pt-4">
+            {" "}
             {/* Mobile Search - Show when scrolled */}
             {showSearchInNav && (
               <div className="mb-4">
+                {" "}
                 <form onSubmit={handleSearch} className="relative">
-                  <div className="flex items-center bg-gray-50 rounded-full border border-gray-200">
+                  <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
                     <div className="flex items-center pl-4 pr-2">
                       <Sparkles className="w-4 h-4 text-orange-400" />
-                    </div>
+                    </div>{" "}
                     <Input
                       type="text"
-                      placeholder="Describe your dream home..."
+                      placeholder={placeholderTexts[currentPlaceholder]}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 placeholder:text-gray-500 text-sm"
+                      className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm"
                     />
                     <Button
                       type="submit"
@@ -153,7 +172,6 @@ const Navigation = () => {
                 </form>
               </div>
             )}
-
             <div className="space-y-4">
               {navItems.map((item) => (
                 <a
