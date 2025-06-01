@@ -127,34 +127,30 @@ const Navigation = () => {
               id="navbar-search-container"
               className={`hidden lg:flex items-center flex-1 transition-all duration-300 ${
                 isSearchFocused ? "max-w-2xl" : "max-w-md"
-              } mx-8 relative`}
+              } mx-4 sm:mx-8 relative`}
             >
               {" "}
               <form onSubmit={handleSearch} className="relative w-full">
                 <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
-                  <div className="flex items-center pl-4 pr-2">
+                  <div className="flex items-center pl-3 sm:pl-4 pr-2">
                     <AnimatedSearchIcon size={18} />
-                  </div>{" "}
+                  </div>
                   <Input
                     type="text"
-                    placeholder={
-                      isSearchFocused
-                        ? "Search for homes, neighborhoods, or ask AI..."
-                        : ""
-                    }
+                    placeholder={isSearchFocused ? "Search homes..." : ""}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}
                     className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm caret-gray-500"
                   />
                   {!searchQuery && !isSearchFocused && (
-                    <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 left-12 sm:left-20 flex items-center pointer-events-none">
                       <AnimatedTypingPlaceholder
                         texts={placeholderTexts}
                         typingSpeed={60}
                         deletingSpeed={30}
                         pauseDuration={800}
-                        className="text-gray-500 text-sm"
+                        className="text-gray-500 text-sm truncate max-w-[180px] sm:max-w-full"
                         cursorColor="text-gray-500"
                         isActive={isSearchFocused}
                       />
@@ -163,7 +159,7 @@ const Navigation = () => {
                   <Button
                     type="submit"
                     size="sm"
-                    className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4"
+                    className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-3 sm:px-4"
                   >
                     <Search className="w-4 h-4" />
                   </Button>
@@ -236,36 +232,24 @@ const Navigation = () => {
             {/* Mobile Search - Show when scrolled */}
             {showSearchInNav && (
               <div className="mb-4">
-                {" "}
                 <form onSubmit={handleSearch} className="relative">
                   <div className="flex items-center bg-gray-50 rounded-full hover:shadow-lg focus-within:shadow-xl transition-all duration-300">
-                    <div className="flex items-center pl-4 pr-2">
+                    <div className="flex items-center pl-3 sm:pl-4 pr-2">
                       <AnimatedSearchIcon size={18} />
-                    </div>{" "}
+                    </div>
                     <Input
                       type="text"
-                      placeholder="Search for homes, neighborhoods, or ask AI..."
+                      placeholder="Search homes..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => setIsSearchFocused(true)}
+                      onBlur={() => setIsSearchFocused(false)}
                       className="flex-1 border-0 py-2 px-0 bg-transparent focus-visible:ring-0 focus:ring-0 focus:ring-offset-0 shadow-none outline-none placeholder:text-gray-500 text-sm caret-gray-500"
                     />
-                    {!searchQuery && (
-                      <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
-                        <AnimatedTypingPlaceholder
-                          texts={placeholderTexts}
-                          typingSpeed={60}
-                          deletingSpeed={30}
-                          pauseDuration={800}
-                          className="text-gray-500 text-sm"
-                          cursorColor="text-gray-500"
-                          isActive={false}
-                        />
-                      </div>
-                    )}
                     <Button
                       type="submit"
                       size="sm"
-                      className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4"
+                      className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-3 sm:px-4"
                     >
                       <Search className="w-4 h-4" />
                     </Button>

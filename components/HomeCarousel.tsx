@@ -156,39 +156,36 @@ const HomeCarousel = () => {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
           >
-            {" "}
-            <div className="flex items-center pl-5 pr-2 text-blue-500">
+            <div className="flex items-center pl-3 sm:pl-5 pr-2 text-blue-500">
               <AnimatedSearchIcon size={24} />
-            </div>{" "}
+            </div>
             <input
               type="text"
-              placeholder={
-                isSearchFocused ? "Search for your dream home..." : ""
-              }
+              placeholder={isSearchFocused ? "Search homes..." : ""}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
-              className="flex-1 px-4 py-4 rounded-full bg-transparent focus:outline-none text-gray-800 caret-gray-500"
+              className="flex-1 px-2 sm:px-4 py-3 sm:py-4 rounded-full bg-transparent focus:outline-none text-gray-800 caret-gray-500"
             />
             {!searchQuery && !isSearchFocused && (
-              <div className="absolute inset-y-0 left-20 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-12 sm:left-20 flex items-center pointer-events-none">
                 <AnimatedTypingPlaceholder
                   texts={placeholderTexts}
                   typingSpeed={50}
                   deletingSpeed={25}
                   pauseDuration={1000}
-                  className="text-gray-500 text-base"
+                  className="text-gray-500 text-base truncate max-w-[180px] sm:max-w-full"
                   cursorColor="text-gray-500"
-                  isActive={isSearchFocused}
+                  isActive={false}
                 />
               </div>
             )}
             <Button
               type="submit"
-              className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-5 h-12"
+              className="m-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-3 sm:px-5 h-10 sm:h-12"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 sm:w-5 h-4 sm:h-5" />
             </Button>
           </motion.div>
         </div>
