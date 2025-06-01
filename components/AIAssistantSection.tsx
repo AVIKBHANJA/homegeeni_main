@@ -2,10 +2,11 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Bot, MessageCircle, Lightbulb, Target, Send } from "lucide-react";
+import { Lightbulb, Send, FileText, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import AnimatedTypingPlaceholder from "@/components/ui/animated-typing-placeholder";
+import AnimatedCircularLogo from "@/components/ui/animated-circular-logo";
 
 const AIAssistantSection = () => {
   const [userInput, setUserInput] = useState("");
@@ -42,8 +43,9 @@ const AIAssistantSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
+            {" "}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 border border-blue-200 mb-6">
-              <Bot className="w-4 h-4 text-blue-600" />
+              <AnimatedCircularLogo size={16} />
               <span className="text-sm font-medium text-blue-700">
                 AI Assistant
               </span>
@@ -66,18 +68,20 @@ const AIAssistantSection = () => {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0 overflow-hidden">
                   <motion.div
                     animate={{
-                      rotate: [0, 15, -15, 0],
-                      scale: [1, 1.2, 1],
+                      y: [0, -3, 0],
+                      rotate: [0, 2, -2, 0],
+                      scale: [1, 1.05, 1],
                     }}
                     transition={{
-                      duration: 3,
+                      duration: 2.5,
                       repeat: Infinity,
                       repeatType: "reverse",
                       ease: "easeInOut",
                     }}
                   >
-                    <MessageCircle className="w-6 h-6 text-white" />
+                    <FileText className="w-6 h-6 text-white" />
                   </motion.div>
+
                 </div>
                 <div>
                   {" "}
@@ -122,25 +126,20 @@ const AIAssistantSection = () => {
               </div>{" "}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <motion.div
+                   <motion.div
                     animate={{
-                      rotate: [0, 360],
-                      scale: [1, 1.15, 1],
+                      scale: [1, 1.1, 0.95, 1],
+                      rotate: [0, -2, 2, 0],
+                      y: [0, -2, 0],
                     }}
                     transition={{
-                      rotate: {
-                        duration: 8,
-                        ease: "linear",
-                        repeat: Infinity,
-                      },
-                      scale: {
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                      },
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
                     }}
                   >
-                    <Target className="w-6 h-6 text-white" />
+                    <Archive className="w-6 h-6 text-white" />
                   </motion.div>
                 </div>
                 <div>
@@ -205,24 +204,20 @@ const AIAssistantSection = () => {
             className="relative"
           >
             <div className="bg-white rounded-3xl shadow-2xl p-6 relative overflow-hidden">
-              {/* Chat Header */}
+              {/* Chat Header */}{" "}
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-white" />
-                </div>{" "}
+                <AnimatedCircularLogo size={40} />
                 <div className="flex items-center gap-2">
                   <img src="/logo.png" alt="HomeGeeni" className="h-6 w-auto" />
                   <span className="font-semibold text-gray-900">AI</span>
                   <p className="text-sm text-green-500">● Online</p>
                 </div>
               </div>
-
               {/* Chat Messages */}
               <div className="space-y-4">
+                {" "}
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
+                  <AnimatedCircularLogo size={32} className="flex-shrink-0" />
                   <div className="bg-gray-50 rounded-2xl rounded-tl-sm p-4 max-w-xs">
                     <p className="text-gray-700">
                       Hi! I'm your AI real estate assistant. What can I help you
@@ -230,17 +225,13 @@ const AIAssistantSection = () => {
                     </p>
                   </div>
                 </div>
-
                 <div className="flex justify-end">
                   <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl rounded-tr-sm p-4 max-w-xs">
                     <p>I'm looking for a 3-bedroom house under $500K</p>
                   </div>
-                </div>
-
+                </div>{" "}
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
+                  <AnimatedCircularLogo size={32} className="flex-shrink-0" />
                   <div className="bg-gray-50 rounded-2xl rounded-tl-sm p-4 max-w-xs">
                     <p className="text-gray-700">
                       Perfect! I found 12 properties matching your criteria. The
@@ -249,12 +240,9 @@ const AIAssistantSection = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Typing Indicator */}
+              {/* Typing Indicator */}{" "}
               <div className="mt-6 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-white" />
-                </div>
+                <AnimatedCircularLogo size={32} className="flex-shrink-0" />
                 <div className="bg-gray-50 rounded-2xl p-4">
                   <div className="flex gap-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
