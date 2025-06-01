@@ -222,7 +222,7 @@ Remember, buying a home is not just a financial decision—it's about finding a 
     `,    author: {
       name: "HomeGeeni AI",
       avatar: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=150&h=150&fit=crop",
-      role: "AI Real Estate Advisor"
+      role: "AI Real Estate Assistant"
     },
     category: "Home Buying",
     tags: ["First-Time Buyers", "Home Buying Guide", "Real Estate Tips", "Mortgage"],
@@ -393,7 +393,7 @@ With patience, persistence, and the right approach, real estate can become a pow
     `,    author: {
       name: "Geeni AI",
       avatar: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=150&h=150&fit=crop",
-      role: "AI Investment Advisor"
+      role: "AI Investment Assistant"
     },
     category: "Investment",
     tags: ["Real Estate Investment", "Rental Properties", "Wealth Building", "Property Analysis"],

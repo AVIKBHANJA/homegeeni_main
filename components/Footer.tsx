@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Brain,
   Mail,
@@ -244,8 +246,71 @@ const Footer = () => {
                 </span>
               </a>
             </div>
+          </div>{" "}
+        </div>
+        {/* Mobile App Coming Soon Section */}
+        <div className="border-t border-gray-700/30 pt-12 pb-12">
+          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-8 rounded-2xl backdrop-blur-sm border border-gray-700/50 shadow-xl">
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Coming Soon to Mobile
+              </h3>
+              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Take HomeGeeni with you everywhere. Our mobile apps will bring
+                AI-powered real estate tools right to your fingertips.
+              </p>{" "}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                {/* iOS App Store Button */}
+                <button
+                  className="group transition-all duration-300 hover:scale-105 cursor-pointer disabled:cursor-not-allowed"
+                  disabled
+                  onClick={() => {
+                    // TODO: Add App Store link when available
+                    console.log("iOS App Store - Coming Soon");
+                  }}
+                >
+                  <div className="relative">
+                    <img
+                      src="/ios-logo.svg"
+                      alt="Download on iOS App Store"
+                      className="w-40 h-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+                    />
+                  </div>
+                </button>
+
+                {/* Android Play Store Button */}
+                <button
+                  className="group transition-all duration-300 hover:scale-105 cursor-pointer disabled:cursor-not-allowed"
+                  disabled
+                  onClick={() => {
+                    // TODO: Add Play Store link when available
+                    console.log("Google Play Store - Coming Soon");
+                  }}
+                >
+                  <div className="relative">
+                    <img
+                      src="/android-logo.svg"
+                      alt="Get it on Google Play Store"
+                      className="w-40 h-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+                    />
+                  </div>
+                </button>
+              </div>
+              <div className="mt-6">
+                <p className="text-gray-300 text-lg font-medium">
+                  📱 Coming Soon!
+                </p>
+                <p className="text-gray-400 text-sm mt-2">
+                  Our mobile apps are currently in development.
+                  <span className="text-blue-400 hover:text-blue-300 cursor-pointer ml-1">
+                    Subscribe above for updates
+                  </span>
+                </p>
+              </div>{" "}
+             
+            </div>
           </div>
-        </div>{" "}
+        </div>
         {/* AI Recommendations Section */}
         <div className="border-t border-gray-700/30 pt-12 pb-12">
           <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-700/50">
@@ -311,10 +376,11 @@ const Footer = () => {
                   reflect the views of licensed professionals.
                 </p>
                 <p>
+                  {" "}
                   All information should be independently verified and does not
                   constitute legal, financial, or real estate advice. For
                   personalized guidance, always consult a licensed real estate
-                  agent, attorney, or financial advisor.
+                  agent, attorney, or financial assistant.
                 </p>
               </div>
               <div>
