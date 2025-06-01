@@ -23,6 +23,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import AnimatedCircularLogo from "@/components/ui/animated-circular-logo";
 import {
   getBlogPost,
   getRelatedBlogPosts,
@@ -165,27 +166,30 @@ export default function BlogPostPage() {
                       </div>
                     )}
                   </div>
-
                   {/* Title */}
                   <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                     {post.title}
                   </h1>
-
                   {/* Excerpt */}
                   <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                     {post.excerpt}
-                  </p>
-
+                  </p>{" "}
                   {/* Meta Information */}
                   <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
                     <div className="flex items-center gap-2">
-                      <Image
-                        src={post.author.avatar || "/logo.png"}
-                        alt={post.author.name}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
+                      {post.author.name === "Geeni AI" ||
+                      post.author.name === "HomeGeeni AI" ||
+                      post.author.name === "GeeniAI" ? (
+                        <AnimatedCircularLogo size={40} />
+                      ) : (
+                        <Image
+                          src={post.author.avatar || "/logo.png"}
+                          alt={post.author.name}
+                          width={40}
+                          height={40}
+                          className="rounded-full"
+                        />
+                      )}
                       <div>
                         <div className="font-medium text-gray-900">
                           {post.author.name}
@@ -215,7 +219,6 @@ export default function BlogPostPage() {
                       <span>{post.readTime}</span>
                     </div>
                   </div>
-
                   {/* Actions */}
                   <div className="flex items-center gap-4">
                     <Link href="/blogs">
@@ -309,16 +312,23 @@ export default function BlogPostPage() {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="mt-12"
                 >
+                  {" "}
                   <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4">
-                        <Image
-                          src={post.author.avatar || "/logo.png"}
-                          alt={post.author.name}
-                          width={60}
-                          height={60}
-                          className="rounded-full"
-                        />
+                        {post.author.name === "Geeni AI" ||
+                        post.author.name === "HomeGeeni AI" ||
+                        post.author.name === "GeeniAI" ? (
+                          <AnimatedCircularLogo size={60} />
+                        ) : (
+                          <Image
+                            src={post.author.avatar || "/logo.png"}
+                            alt={post.author.name}
+                            width={60}
+                            height={60}
+                            className="rounded-full"
+                          />
+                        )}
                         <div>
                           <h4 className="text-lg font-semibold text-gray-900 mb-1">
                             {post.author.name}

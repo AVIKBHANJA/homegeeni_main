@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import AnimatedCircularLogo from "@/components/ui/animated-circular-logo";
 import {
   getAllBlogPosts,
   getUniqueCategories,
@@ -280,15 +281,12 @@ export default function BlogsPage() {
                               {post.readTime}
                             </div>
                           </div>
-
                           <h2 className="text-xl font-semibold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
                             {post.title}
                           </h2>
-
                           <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
                             {post.excerpt}
                           </p>
-
                           {/* Tags */}
                           <div className="flex flex-wrap gap-2 mb-4">
                             {post.tags.slice(0, 2).map((tag) => (
@@ -305,18 +303,23 @@ export default function BlogsPage() {
                                 +{post.tags.length - 2} more
                               </span>
                             )}
-                          </div>
-
+                          </div>{" "}
                           {/* Author and Read More */}
                           <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                             <div className="flex items-center gap-2">
-                              <Image
-                                src={post.author.avatar || "/logo.png"}
-                                alt={post.author.name}
-                                width={24}
-                                height={24}
-                                className="rounded-full"
-                              />
+                              {post.author.name === "Geeni AI" ||
+                              post.author.name === "HomeGeeni AI" ||
+                              post.author.name === "GeeniAI" ? (
+                                <AnimatedCircularLogo size={24} />
+                              ) : (
+                                <Image
+                                  src={post.author.avatar || "/logo.png"}
+                                  alt={post.author.name}
+                                  width={24}
+                                  height={24}
+                                  className="rounded-full"
+                                />
+                              )}
                               <div className="text-sm">
                                 <div className="font-medium text-gray-900">
                                   {post.author.name}
