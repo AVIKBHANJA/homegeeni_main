@@ -74,7 +74,7 @@ export default function FAQPage() {
         {
           question: "Can HomeGeeni help with negotiating offers?",
           answer:
-            "Yes! Our AI offer assistant analyzes market conditions, property history, comparable sales, and listing duration to suggest strategic offer amounts and terms. It provides guidance throughout the negotiation process with data-backed recommendations to help you make confident decisions.",
+            "No, HomeGeeni does not directly negotiate offers. That's up to your agent if you are using one.",
         },
         {
           question: "How does document management work?",
